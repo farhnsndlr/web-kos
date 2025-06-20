@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('boarding_house_id')->constrained();
             $table->string('name');
             $table->string('room_type');
-            $table->int('square_feet');
-            $table->int('price_per_month');
+            $table->integer('square_feet');
+            $table->integer('price_per_month');
             $table->boolean('is_available');
             $table->timestamps();
         });
