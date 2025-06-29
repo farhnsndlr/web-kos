@@ -29,7 +29,7 @@ class BoardingHouseResource extends Resource
                     ->tabs([
                         Tabs\Tab::make('Informasi Umum')
                             ->schema([
-                                forms\Components\FileUpload::make('image')
+                                forms\Components\FileUpload::make('thumbnail')
                                     ->image()
                                     ->directory('boarding_house')
                                     ->required(),
@@ -57,9 +57,19 @@ class BoardingHouseResource extends Resource
                                 forms\Components\Textarea::make('address')
                                     ->required(),
                             ]),
-                        Tabs\Tab::make('Tab 2')
+                        Tabs\Tab::make('Bonus')
                             ->schema([
-                                // ...
+                                forms\Components\Repeater::make('bonuses')
+                                    ->schema([
+                                        forms\Components\FileUpload::make('image')
+                                            ->image()
+                                            ->directory('bonuses')
+                                            ->required(),
+                                        forms\Components\TextInput::make('name')
+                                            ->required(),
+                                        forms\Components\TextInput::make('description')
+                                            ->required(),
+                                    ])
                             ]),
                         Tabs\Tab::make('Tab 3')
                             ->schema([
