@@ -60,6 +60,7 @@ class BoardingHouseResource extends Resource
                         Tabs\Tab::make('Bonus')
                             ->schema([
                                 forms\Components\Repeater::make('bonuses')
+                                    ->relationship('bonuses')
                                     ->schema([
                                         forms\Components\FileUpload::make('image')
                                             ->image()
@@ -71,9 +72,36 @@ class BoardingHouseResource extends Resource
                                             ->required(),
                                     ])
                             ]),
-                        Tabs\Tab::make('Tab 3')
+                        Tabs\Tab::make('Rooms')
                             ->schema([
-                                // ...
+                                forms\Components\Repeater::make('rooms')
+                                    ->relationship('rooms')
+                                    ->schema([
+                                        forms\Components\TextInput::make('name')
+                                            ->required(),
+                                        forms\Components\TextInput::make('room_type')
+                                            ->required(),
+                                        forms\Components\TextInput::make('square_feet')
+                                            ->numeric()
+                                            ->required(),
+                                        forms\Components\TextInput::make('capacity')
+                                            ->numeric()
+                                            ->required(),
+                                        forms\Components\TextInput::make('price_per_month')
+                                            ->numeric()
+                                            ->prefix('IDR')
+                                            ->required(),
+                                        forms\Components\Toggle::make('is_available')
+                                            ->required(),
+                                        forms\Components\Repeater::make('images')
+                                            ->relationship('images')
+                                            ->schema([
+                                                forms\Components\FileUpload::make('image')
+                                                    ->image()
+                                                    ->directory('rooms')
+                                                    ->required(),
+                                            ])
+                                    ])
                             ]),
                     ])->columnSpan(2)
 
